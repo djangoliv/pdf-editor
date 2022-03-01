@@ -231,24 +231,7 @@ function addingLastDraw() {
     <div
       class="relative mr-3 flex h-8 bg-gray-400 rounded-sm overflow-hidden
       md:mr-4">
-      <label
-        class="flex items-center justify-center h-full w-8 hover:bg-gray-500
-        cursor-pointer"
-        for="image"
-        class:cursor-not-allowed={selectedPageIndex < 0}
-        class:bg-gray-500={selectedPageIndex < 0}>
-        <img src="image.svg" alt="An icon for adding images" />
-      </label>
-      <label
-        class="flex items-center justify-center h-full w-8 hover:bg-gray-500
-        cursor-pointer"
-        for="text"
-        class:cursor-not-allowed={selectedPageIndex < 0}
-        class:bg-gray-500={selectedPageIndex < 0}
-        on:click={onAddTextField}>
-        <img src="notes.svg" alt="An icon for adding text" />
-      </label>
-        <label
+         <label
         class="flex items-center justify-center h-full w-8 hover:bg-gray-500
         cursor-pointer"
         on:click={onAddDrawing}
