@@ -150,7 +150,17 @@
       pIndex === selectedPageIndex ? [...objects, object] : objects
     );
   }
-  function selectFontFamily(event) {
+function addingLastDraw() {
+  console.log(allObjects);
+    const { originWidth, originHeight, path } = allObjects[allObjects.length - 1][allObjects[0].length - 1];
+    let scale = 1;
+    if (originWidth > 500) {
+      scale = 500 / originWidth;
+      }
+  console.log(originWidth, originHeight, path, scale);
+  addDrawing(originWidth, originHeight, path, scale);
+  }
+ function selectFontFamily(event) {
     const name = event.detail.name;
     fetchFont(name);
     currentFont = name;
@@ -238,17 +248,24 @@
         on:click={onAddTextField}>
         <img src="notes.svg" alt="An icon for adding text" />
       </label>
-      <label
+        <label
         class="flex items-center justify-center h-full w-8 hover:bg-gray-500
         cursor-pointer"
         on:click={onAddDrawing}
         class:cursor-not-allowed={selectedPageIndex < 0}
         class:bg-gray-500={selectedPageIndex < 0}>
         <img src="gesture.svg" alt="An icon for adding drawing" />
+  </label>
+        <label
+        class="flex items-center justify-center h-full w-8 hover:bg-gray-500
+        cursor-pointer"
+        on:click={addingLastDraw}
+        class:cursor-not-allowed={selectedPageIndex < 0}
+        class:bg-gray-500={selectedPageIndex < 0}>
+        <img src="edit.svg" alt="An icon for adding last draw" />
       </label>
     </div>
     <div class="justify-center mr-3 md:mr-4 w-full max-w-xs hidden md:flex">
-      <img src="/edit.svg" class="mr-2" alt="a pen, edit pdf name" />
       <input
         placeholder="Rename your PDF here"
         type="text"
@@ -282,6 +299,7 @@
           if (originWidth > 500) {
             scale = 500 / originWidth;
           }
+          console.log(originWidth, originHeight, path, scale);
           addDrawing(originWidth, originHeight, path, scale);
           addingDrawing = false;
         }}
